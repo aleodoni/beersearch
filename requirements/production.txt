@@ -1,0 +1,15 @@
+# Pro-tip: Try not to put anything here. Avoid dependencies in
+#	production that aren't in development.
+-r base.txt
+
+# WSGI Handler
+# ------------------------------------------------
+gunicorn==19.7.1
+
+# Email backends for Mailgun, Postmark, SendGrid and more
+# -------------------------------------------------------
+django-anymail==0.9
+
+# Memcached binding
+python-memcached
+
