@@ -4,7 +4,7 @@ from django.test import TestCase, RequestFactory
 from unittest.mock import patch, MagicMock, Mock
 from django.db import IntegrityError, DataError
 
-from ..models import Loja
+from ..models import Loja, TipoLoja
 
 class TestLojasTestCase(TestCase):
 	fixtures = ['lojas.json']
@@ -30,3 +30,21 @@ class TestLojasTestCase(TestCase):
 	def testEmailObrigatorio(self):
 		with self.assertRaises(IntegrityError):
 			loja = Loja.objects.create(nome='BilBil Beer', site='www.bilbilbeer.com.br', email=None)
+
+
+class TestTipoLojasTestCase(TestCase):
+	fixtures = ['tipo_loja.json']
+
+	def setUp(self):
+		super(TestTipoLojasTestCase, self).setUp()
+
+	def testDummy(self):
+		self.assertEqual(1, 1)
+
+	def testRetornaVendaInsumo(self):
+		tipo_loja = TipoLoja.objects.get(pk=1)
+		self.assertEqual(tipo_loja.nome, 'Venda de Insumos')
+
+	def testNomeObrigatorio(self):
+		with self.assertRaises(IntegrityError):
+			tipo_loja = TipoLoja.objects.create(nome=None)
