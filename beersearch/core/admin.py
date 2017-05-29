@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 from django.contrib import admin
 
-from .models import Loja, TipoLoja
+from .models import Loja, TipoLoja, FabricaMalte
 
 class TipoLojaInline(admin.TabularInline):
 	model = TipoLoja.lojas.through
@@ -20,3 +20,4 @@ class LojaAdmin(admin.ModelAdmin):
 
 admin.site.register(Loja, LojaAdmin)
 admin.site.register(TipoLoja)
+admin.site.register(FabricaMalte)
