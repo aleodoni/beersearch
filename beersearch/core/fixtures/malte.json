@@ -1,0 +1,11 @@
+[
+    {
+        "pk": 1, 
+        "model": "core.malte", 
+        "fields": {
+        	"fabrica": 1,
+            "nome": "Pilsen",
+            "ebc": 3.5
+        }
+    }
+]

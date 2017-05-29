@@ -55,3 +55,19 @@ class FabricaMalte(models.Model):
 
 	def __str__(self):
 		return self.nome				
+
+#---------------------------------------------------------------------------------------------
+# Model Malte
+#---------------------------------------------------------------------------------------------
+@python_2_unicode_compatible
+class Malte(models.Model):
+
+	nome = models.CharField(max_length=300)
+	fabrica = models.ForeignKey(FabricaMalte)
+	ebc = models.DecimalField(max_digits=5, decimal_places=1)
+
+	def __unicode__(self):
+		return self.nome
+
+	def __str__(self):
+		return self.nome						
