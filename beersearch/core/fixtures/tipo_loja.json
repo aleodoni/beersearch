@@ -1,0 +1,17 @@
+[
+    {
+        "pk": 1, 
+        "model": "core.tipoloja", 
+        "fields": {
+            "nome": "Venda de Insumos"
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "core.tipoloja", 
+        "fields": {
+            "nome": "Venda de Cervejas"
+        }
+    }
+
+]
