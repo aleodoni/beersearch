@@ -38,3 +38,20 @@ class TipoLoja(models.Model):
 
 	def __str__(self):
 		return self.nome		
+
+#---------------------------------------------------------------------------------------------
+# Model FabricaMalte
+#---------------------------------------------------------------------------------------------
+@python_2_unicode_compatible
+class FabricaMalte(models.Model):
+	class Meta:
+		verbose_name_plural = 'Fabricas de Maltes'
+
+	nome = models.CharField(max_length=300)
+	pais = models.CharField(max_length=100)
+
+	def __unicode__(self):
+		return self.nome
+
+	def __str__(self):
+		return self.nome				
