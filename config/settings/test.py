@@ -62,22 +62,11 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
     ], ],
 ]
 
-# LDAP
-# ------------------------------------------------------------------------------
-LDAP_AUTH_URL = env('LDAP_AUTH_URL', default='')
-LDAP_AUTH_SEARCH_BASE = env('LDAP_AUTH_SEARCH_BASE', default='')
-
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    'ldap': {
-        'ENGINE': 'ldapdb.backends.ldap',
-        'NAME': env('LDAP_AUTH_URL'),
-     },
+
     'default': env.db_url('DATABASE_TEST_URL'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
-
-
-
