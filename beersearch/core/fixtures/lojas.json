@@ -1,0 +1,11 @@
+[
+    {
+        "pk": 1, 
+        "model": "core.loja", 
+        "fields": {
+            "nome": "BilBil Beer",
+            "site": "www.bilbilbeer.com.br",
+            "email": "loja@bilbilbeer.com.br"
+        }
+    }
+]
