@@ -4,7 +4,7 @@ from django.test import TestCase, RequestFactory
 from unittest.mock import patch, MagicMock, Mock
 from django.db import IntegrityError, DataError
 
-from ..models import Loja, TipoLoja, FabricaMalte
+from ..models import Loja, TipoLoja, FabricaMalte, Malte
 
 class TestLojasTestCase(TestCase):
 	fixtures = ['lojas.json']
@@ -69,3 +69,29 @@ class TestFabricaMalteTestCase(TestCase):
 	def testPaisObrigatorio(self):
 		with self.assertRaises(IntegrityError):
 			fabrica_malte = FabricaMalte.objects.create(nome='Weinermann', pais=None)			
+
+class TestMalteTestCase(TestCase):
+	fixtures = ['fabrica_malte.json', 'malte.json']
+
+	def setUp(self):
+		super(TestMalteTestCase, self).setUp()
+
+	def testDummy(self):
+		self.assertEqual(1, 1)
+
+	def testRetornaMaltePilsenWeynermann(self):
+		malte = Malte.objects.get(pk=1)
+		self.assertEqual(malte.nome, 'Pilsen')
+
+	def testInsereMalteOK(self):
+		fabrica_malte = FabricaMalte.objects.get(pk=1)
+		malte = Malte.objects.create(nome='Pilsen', fabrica=fabrica_malte, ebc=3.5)
+
+	def testInsereMalteFabricaNula(self):
+		with self.assertRaises(IntegrityError):
+			malte = Malte.objects.create(nome='Pilsen', fabrica=None, ebc=3.5)
+
+	def testInsereMalteEbcNula(self):
+		fabrica_malte = FabricaMalte.objects.get(pk=1)
+		with self.assertRaises(IntegrityError):
+			malte = Malte.objects.create(nome='Pilsen', fabrica=fabrica_malte, ebc=None)
