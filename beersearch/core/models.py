@@ -4,6 +4,12 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
+TIPO_LUPULO = (
+    (1, 'AMARGOR'),
+    (2, 'AROMA'),
+    (3, 'AROMA E AMARGOR'),
+)
+
 #---------------------------------------------------------------------------------------------
 # Model Loja
 #---------------------------------------------------------------------------------------------
@@ -71,3 +77,18 @@ class Malte(models.Model):
 
 	def __str__(self):
 		return self.nome						
+
+#---------------------------------------------------------------------------------------------
+# Model Lupulo
+#---------------------------------------------------------------------------------------------
+@python_2_unicode_compatible
+class Lupulo(models.Model):
+
+	nome = models.CharField(max_length=300)
+	tipo = models.IntegerField(choices=TIPO_LUPULO)
+
+	def __unicode__(self):
+		return self.nome
+
+	def __str__(self):
+		return self.nome								
