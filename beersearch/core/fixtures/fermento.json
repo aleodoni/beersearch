@@ -1,0 +1,11 @@
+[
+    {
+        "pk": 1, 
+        "model": "core.fermento", 
+        "fields": {
+        	"fabrica": 1,
+            "nome": "Fermentis US-05",
+            "tipo": 1
+        }
+    }
+]
