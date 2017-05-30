@@ -10,6 +10,11 @@ TIPO_LUPULO = (
     (3, 'AROMA E AMARGOR'),
 )
 
+TIPO_FERMENTO = (
+    (1, 'ALE'),
+    (2, 'LAGER'),
+)
+
 #---------------------------------------------------------------------------------------------
 # Model Loja
 #---------------------------------------------------------------------------------------------
@@ -92,3 +97,33 @@ class Lupulo(models.Model):
 
 	def __str__(self):
 		return self.nome								
+
+#---------------------------------------------------------------------------------------------
+# Model FabricaFermento
+#---------------------------------------------------------------------------------------------
+@python_2_unicode_compatible
+class FabricaFermento(models.Model):
+
+	nome = models.CharField(max_length=300)
+
+	def __unicode__(self):
+		return self.nome
+
+	def __str__(self):
+		return self.nome										
+
+#---------------------------------------------------------------------------------------------
+# Model Fermento
+#---------------------------------------------------------------------------------------------
+@python_2_unicode_compatible
+class Fermento(models.Model):
+
+	nome = models.CharField(max_length=300)
+	fabrica = models.ForeignKey(FabricaFermento)
+	tipo = models.IntegerField(choices=TIPO_FERMENTO)
+
+	def __unicode__(self):
+		return self.nome
+
+	def __str__(self):
+		return self.nome												
