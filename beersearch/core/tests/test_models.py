@@ -4,7 +4,7 @@ from django.test import TestCase, RequestFactory
 from unittest.mock import patch, MagicMock, Mock
 from django.db import IntegrityError, DataError
 
-from ..models import Loja, TipoLoja, FabricaMalte, Malte
+from ..models import Loja, TipoLoja, FabricaMalte, Malte, Lupulo
 
 class TestLojasTestCase(TestCase):
 	fixtures = ['lojas.json']
@@ -95,3 +95,27 @@ class TestMalteTestCase(TestCase):
 		fabrica_malte = FabricaMalte.objects.get(pk=1)
 		with self.assertRaises(IntegrityError):
 			malte = Malte.objects.create(nome='Pilsen', fabrica=fabrica_malte, ebc=None)
+
+class TestLupuloTestCase(TestCase):
+	fixtures = ['lupulo.json']
+
+	def setUp(self):
+		super(TestLupuloTestCase, self).setUp()
+
+	def testDummy(self):
+		self.assertEqual(1, 1)
+
+	def testRetornaLupuloCascade(self):
+		lupulo = Lupulo.objects.get(pk=1)
+		self.assertEqual(lupulo.nome, 'Cascade')
+
+	def testInsereLupuloOK(self):
+		lupulo = Lupulo.objects.create(nome='Cascade', tipo=1)
+
+	def testInsereLupuloTipoNulo(self):
+		with self.assertRaises(IntegrityError):
+			lupulo = Lupulo.objects.create(nome='Amarillo', tipo=None)
+
+	def testInsereLupuloNomeNulo(self):
+		with self.assertRaises(IntegrityError):
+			lupulo = Lupulo.objects.create(nome=None, tipo=1)			
